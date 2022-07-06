@@ -7,29 +7,26 @@ function computerPlay() {
     return compMoves[Math.floor(Math.random() * compMoves.length)];
 }
 
-let playerSelection = prompt("What's your move?").toLowerCase();
-let computerSelection = computerPlay().toLowerCase();
+let playerSelection = capitalize(prompt("What's your move?"));
+let computerSelection = computerPlay();
 
 console.log(playerSelection);
 console.log(computerSelection);
 
+// Capitalize first letter only
+function capitalize(string){
+    return string[0].toUpperCase() + string.slice(1).toLowerCase();
+}
+
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         console.log("It's a draw!");
-    } else if(playerSelection === 'rock' && computerSelection === 'paper'){
-        console.log("You lose! Paper beats Rock.");
-    } else if (playerSelection === 'rock' && computerSelection === 'scissors'){
-        console.log("You win! Rock beats Scissors.");
-    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        console.log("You win! Paper beats Rock.");
-    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-        console.log("You lose! Scissors beats Paper.");
-    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        console.log("You lose! Rock beats Scissors.");
-    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        console.log("You win! Scissors beats Paper.");
+    } else if ( (playerSelection === 'Rock' && computerSelection === 'Paper') || (playerSelection === 'Paper' && computerSelection === 'Scissors') || (playerSelection === 'Scissors' && computerSelection === 'Rock') ){
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    } else if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || (playerSelection === 'Paper' && computerSelection === 'Rock') || (playerSelection === 'Scissors' && computerSelection === 'Paper')){
+        console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
     } else{
-        console.log("Please insert a valid move to play (rock, paper or scissors).");
+        console.log(`Please insert a valid move to play (rock, paper or scissors).`);
     }
 }
 
