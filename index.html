@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script src="index.js" defer></script> -->
+    <script src="index.js" defer></script>
     <link rel="stylesheet" href="./styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,44 +14,53 @@
 
 <body>
     <div class="page-wrapper">
-        <!-- <header>
-            <div class="wrapper">
-                <h1>Chatbot Rock Paper Scissors</h1>
-                <h2>First to 5 points wins.</h2>
-            </div>
-        </header> -->
 
-        <main>
-            <div class="game wrapper">
+        <main class="main-content">
+            <div class="wrapper">
+                <!-- Game title -->
                 <div class="title">
                         <h1>Chatbot Rock Paper Scissors</h1>
-                        <h2>First to 5 points wins.</h2>
+                        <h2>First to 5 points wins</h2>
+                        <div class="scoreboard">
+                            <h3 class = "computer-score">Computer: 0</h>
+                            <h3 class = "computer-score">Player: 0 </h3>
+                        </div>
                 </div>
-                <div class="move">
-                    <p>Welcome to Chatbot Rock Paper Scissors! Pick your move: </p>
-                    <div class="buttons">
-                        <button>Rock</button>
-                        <button>Paper</button>
-                        <button>Scissors</button>
+                <!-- Chat box -->
+                <div class="chat">
+                    <!-- Player chat bubbles -->
+                    <div class="player-chat">
+                        <div class="move chat-box">
+                            <p>Welcome to Chatbot Rock Paper Scissors! Pick your move: </p>
+                            <div class="buttons">
+                                <button>Rock</button>
+                                <button>Paper</button>
+                                <button>Scissors</button>
+                            </div>
+                        </div>
+                        <div class="player-move chat-box">
+                            <p>You played ___ .</p>
+                        </div>
                     </div>
-                </div>
-                <div class="player-move">
-                    <p></p>
-                </div>
-                <div class="comp-move">
-                    <p></p>
-                </div>
-                <div class="results-score">
-                    <p></p>
-                </div>
-                <div class="reset">
-                    <p></p>
-                    <button>Play again</button>
+                    <!-- Computer chat bubbles -->
+                    <div class="comp-chat">
+                        <div class="comp-move chat-box">
+                            <p>Computer played ___ .</p>
+                        </div>
+                        <div class="results-score chat-box">
+                            <p>You lost this round! ___ beats ___ .</p>
+                        </div>
+                    </div>
+                    <!-- Game reset option -->
+                    <div class="reset">
+                        <p>Would you like to play again?</p>
+                        <button>Play again</button>
+                    </div>
                 </div>
             </div>
         </main>
 
-    <footer>Copyright © <a href="https://github.com/pinggyu">Ping Yu</a></footer>
+        <footer>Copyright © <a href="https://github.com/pinggyu">Ping Yu</a></footer>
 
     </div>
 

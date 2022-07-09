@@ -17,14 +17,13 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
     --ff-heading: 'Nunito';
 
     /* Colors */
-    --clr-primary: #437FC7;
+    --clr-primary: #437fc7;
     --clr-accent: #6DAFFE;
     --clr-white: #FFFFFF;
 
     --text-primary: rgb(36, 36, 36);
 
     --bg-primary: #ebeff4;
-    --bg-secondary: #FFFFFF;
 
 }
 
@@ -42,35 +41,10 @@ html {
 
 body {
     font-family: var(--ff-body), sans-serif;
+    font-weight: 100;
     min-height: 100vh;
     background-color: var(--bg-primary);
     line-height: 1.2;
-}
-
-h1 {
-    font-family: var(--ff-heading), sans-serif;
-    text-transform: uppercase;
-}
-
-h2 {
-    font-size: 1rem;
-}
-
-button {
-    font-family: var(--ff-heading), sans-serif;
-    text-transform: uppercase;
-    color: var(--clr-white);
-    background-color: var(--clr-primary);
-    border: 1px solid transparent;
-    border-radius: 20px;
-    padding: 1rem 2rem;
-    transition: 0.3s;
-}
-
-button:hover {
-    border: 1px solid var(--clr-primary);
-    background-color: var(--clr-white);
-    color: var(--clr-primary);
 }
 
 .page-wrapper {
@@ -86,22 +60,130 @@ button:hover {
     width: 100%;
     margin: 0 auto;
     background-color: var(--clr-white);
+    border-radius: 40px;
 }
 
-.game {
-    padding: 4rem;
-    border-radius: 40px;
-    margin-top: 45%; 
+.main-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+/* TITLE */
+
+h1 {
+    font-family: var(--ff-heading), sans-serif;
+    color: var(--clr-white);
+    text-transform: uppercase;
+}
+
+h2, h3 {
+    font-family: var(--ff-heading), sans-serif;
+    color: var(--clr-white);
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+h3 {
+    background-color: var(--clr-accent);
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
+.scoreboard {
+    padding-top: 1rem;
+}
+
+.title {
     text-align: center;
+    padding: 3rem;
+    background-color: var(--clr-primary);
+    border-radius: 40px 40px 0 0;
+}
+
+/* BUTTONS */
+button {
+    font-family: var(--ff-heading), sans-serif;
+    text-transform: uppercase;
+    font-size: 1rem;
+    color: var(--clr-white);
+    background-color: var(--clr-accent);
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    transition: 0.3s;
+}
+
+button:hover {
+    border: 1px solid var(--clr-primary);
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
 }
 
 .buttons {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
+    justify-content: center;
 }
+
+/* CHAT */
+
+.chat {
+    padding: 3rem;
+}
+
+.chat p {
+    padding-left: 1.5rem;
+    padding-right: 0.5rem;
+}
+
+.chat-box {
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+.move, 
+.player-move {
+    border-radius: 70px 70px 0px 70px;
+    width: 75%;
+    background-color: var(--clr-primary);
+}
+.move,
+.player-move p {
+    color: var(--clr-white);
+}
+
+.comp-move, 
+.results-score {
+    border-radius: 70px 70px 70px 0px;
+    width: 75%;
+    background-color: var(--bg-primary);
+}
+
+.reset {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.player-chat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.comp-chat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem
+}
+
+/* FOOTER */
 
 footer {
     width: 100%;
