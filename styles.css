@@ -86,11 +86,14 @@ h2, h3 {
     font-size: 1rem;
 }
 
-h3 {
-    background-color: var(--clr-accent);
+.scoreboard h3 {
+    background-color: var(--bg-primary);
+    color: var(--clr-primary);
     border: 1px solid transparent;
     border-radius: 20px;
     padding: 0.5rem 1rem;
+    height: 41.59px;
+    width: 586.5px;
 }
 
 .scoreboard {
@@ -100,7 +103,7 @@ h3 {
 .title {
     text-align: center;
     padding: 3rem;
-    background-color: var(--clr-primary);
+    background: var(--clr-primary);
     border-radius: 40px 40px 0 0;
 }
 
@@ -127,6 +130,7 @@ button:hover {
     display: flex;
     gap: 1rem;
     justify-content: center;
+    flex-wrap: wrap
 }
 
 /* CHAT */
@@ -151,6 +155,12 @@ button:hover {
     width: 75%;
     background-color: var(--clr-primary);
 }
+
+.player-move, .comp-move, .results-score {
+    width: 439.88px;
+    height: 93.59px;
+}
+
 .move,
 .player-move p {
     color: var(--clr-white);
@@ -191,6 +201,8 @@ footer {
     background-color: var(--clr-primary);
     color: var(--clr-white);
     padding: 0.5rem 0;
+    font-family: var(--ff-heading), sans-serif;
+    text-transform: uppercase;
 }
 
 footer a {

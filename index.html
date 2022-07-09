@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f21b5dfadd.js" crossorigin="anonymous"></script>
     <title>Play Rock Paper Scissors</title>
 </head>
 
@@ -22,8 +23,8 @@
                         <h1>Chatbot Rock Paper Scissors</h1>
                         <h2>First to 5 points wins</h2>
                         <div class="scoreboard">
-                            <h3 class = "computer-score">Computer: 0</h>
-                            <h3 class = "computer-score">Player: 0 </h3>
+                            <h3 id="computer-score">COMPUTER: 0</h3>
+                            <h3 id="player-score">PLAYER: 0</h3>
                         </div>
                 </div>
                 <!-- Chat box -->
@@ -33,34 +34,36 @@
                         <div class="move chat-box">
                             <p>Welcome to Chatbot Rock Paper Scissors! Pick your move: </p>
                             <div class="buttons">
-                                <button>Rock</button>
-                                <button>Paper</button>
-                                <button>Scissors</button>
+                                <button id="b1">Rock</button>
+                                <button id="b2">Paper</button>
+                                <button id="b3">Scissors</button>
                             </div>
                         </div>
-                        <div class="player-move chat-box">
-                            <p>You played ___ .</p>
+                        <div class="player-move chat-box" id="player-move">
                         </div>
                     </div>
                     <!-- Computer chat bubbles -->
                     <div class="comp-chat">
-                        <div class="comp-move chat-box">
-                            <p>Computer played ___ .</p>
+                        <div class="comp-move chat-box" id="comp-move">
                         </div>
-                        <div class="results-score chat-box">
-                            <p>You lost this round! ___ beats ___ .</p>
+                        <div class="results-score chat-box" id="results-score">
                         </div>
                     </div>
                     <!-- Game reset option -->
-                    <div class="reset">
+                    <div class="reset" id="reset">
                         <p>Would you like to play again?</p>
-                        <button>Play again</button>
+                        <button>Reset game</button>
                     </div>
                 </div>
             </div>
         </main>
 
-        <footer>Copyright © <a href="https://github.com/pinggyu">Ping Yu</a></footer>
+        <footer>Copyright © 
+            <a href="https://github.com/pinggyu">
+                Ping Yu
+                <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+        </footer>
 
     </div>
 
