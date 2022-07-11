@@ -65,9 +65,7 @@ function playRound(event) {
 
         updateScore();       
 
-        resultText.textContent = `It's a draw!`;
-        resultBox.style.cssText = "background-color: var(--bg-primary)";
-        resultBox.appendChild(resultText);    
+        announceWinner(roundWinner, playerSelection, compSelection);  
 
     } else if (
         (playerSelection === 'Rock' && compSelection === 'Paper') || 
@@ -80,9 +78,7 @@ function playRound(event) {
         if (compScore === 5) {
             endGame(roundWinner);
         } else {
-            resultText.textContent = `You lost this round! ${compSelection} beats ${playerSelection}.`;
-            resultBox.style.cssText = "background-color: var(--bg-primary)";
-            resultBox.appendChild(resultText);
+            announceWinner(roundWinner, playerSelection, compSelection);
         }
 
     } else if (
@@ -96,9 +92,7 @@ function playRound(event) {
         if (playerScore === 5) {
             endGame(roundWinner);
         } else {
-            resultText.textContent = `You won this round! ${playerSelection} beats ${compSelection}.`;
-            resultBox.style.cssText = "background-color: var(--bg-primary)";
-            resultBox.appendChild(resultText);
+            announceWinner(roundWinner, playerSelection, compSelection);
         }    
     }
 }
@@ -107,6 +101,22 @@ function playRound(event) {
 function updateScore(){
     compScoreBox.textContent = `Computer: ${compScore}`;
     playerScoreBox.textContent = `Player: ${playerScore}`;
+}
+
+function announceWinner (roundWinner, playerSelection, compSelection){
+    if (roundWinner === 'Computer'){
+        resultText.textContent = `You lost this round! ${compSelection} beats ${playerSelection}.`;
+        resultBox.style.cssText = "background-color: var(--bg-primary)";
+        resultBox.appendChild(resultText);
+    } else if (roundWinner === 'Player'){
+        resultText.textContent = `You won this round! ${playerSelection} beats ${compSelection}.`;
+        resultBox.style.cssText = "background-color: var(--bg-primary)";
+        resultBox.appendChild(resultText);      
+    } else {
+        resultText.textContent = `It's a draw!`;
+        resultBox.style.cssText = "background-color: var(--bg-primary)";
+        resultBox.appendChild(resultText);   
+    }
 }
 
 // Function to end the game when computer or player reaches 5
