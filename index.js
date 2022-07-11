@@ -1,14 +1,3 @@
-/* =========================
- * Steps:
- * 1. Query for moves choice buttons and store in variable 
- * 2. Query for player move chat box and store in variable
- * 3. addEventListener on buttons (prevent default?) & store player selection in a variable, on click, print out "You played _ " chat bubble
- * 4. Run computerPlay() to get computer move and append that to the computer move chat bubble "Computer played _"
- * 5. Query for results-score
- * 6. Run playRound() and append "You won/lost this round. _ beats _." to the results-score div p
- * 7. Play again option
- * ======================== */
-
 const moves = document.querySelectorAll('.buttons button')
 
 const playerMoveBox = document.getElementById('player-move');
@@ -26,15 +15,13 @@ const resultText = document.createElement('p');
 let compScore = 0;
 let playerScore = 0;
 
-// play a round
+// Play a round
 moves.forEach(button => button.addEventListener('click', playRound))
 
-// reset game 
+// Reset game 
 reset.addEventListener('click', function(e){
     location.reload();
 })
-
-// FUNCTIONS
 
 // Function to generate a random computer play using Math.random()
 function computerPlay() {
@@ -64,7 +51,6 @@ function playRound(event) {
         roundWinner = "Draw";
 
         updateScore();       
-
         announceWinner(roundWinner, playerSelection, compSelection);  
 
     } else if (
@@ -103,6 +89,7 @@ function updateScore(){
     playerScoreBox.textContent = `Player: ${playerScore}`;
 }
 
+// Function to announce a winner after a non game ending round
 function announceWinner (roundWinner, playerSelection, compSelection){
     if (roundWinner === 'Computer'){
         resultText.textContent = `You lost this round! ${compSelection} beats ${playerSelection}.`;

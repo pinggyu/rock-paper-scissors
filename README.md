@@ -1,6 +1,6 @@
 # Odin Project: Chatbot Rock Paper Scissors
 
-**View live site [here](https://pinggyu.github.io/rock-paper-scissors/)**
+**View live site [here](https://pinggyu.github.io/rock-paper-scissors/).**
 
 ## Objective
 
