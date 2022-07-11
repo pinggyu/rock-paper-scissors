@@ -26,8 +26,6 @@ const resultText = document.createElement('p');
 let compScore = 0;
 let playerScore = 0;
 
-console.log(moves);
-
 // play a round
 moves.forEach(button => button.addEventListener('click', playRound))
 
@@ -50,22 +48,26 @@ function playRound(event) {
     // player move
     const playerSelection = event.target.textContent;
     playerMoveText.textContent = `You played ${playerSelection}.`;
+    playerMoveBox.style.cssText = "background-color: var(--clr-primary)";
     playerMoveBox.appendChild(playerMoveText);
 
     // computer move
     const compSelection = computerPlay();
     compMoveText.textContent = `Computer played ${compSelection}.`;
+    compMoveBox.style.cssText = "background-color: var(--bg-primary)";
     compMoveBox.appendChild(compMoveText);   
 
     // game
     let roundWinner;
+
     if (playerSelection === compSelection) {
         roundWinner = "Draw";
 
-        updateScore();        
-        
+        updateScore();       
+
         resultText.textContent = `It's a draw!`;
-        resultBox.appendChild(resultText);
+        resultBox.style.cssText = "background-color: var(--bg-primary)";
+        resultBox.appendChild(resultText);    
 
     } else if (
         (playerSelection === 'Rock' && compSelection === 'Paper') || 
@@ -73,17 +75,13 @@ function playRound(event) {
         (playerSelection === 'Scissors' && compSelection === 'Rock')
         ) {
         roundWinner = "Computer";
-
         compScore++;
         updateScore(); 
-        
-        if (compScore === 5){
-            compScoreBox.style.cssText = "background-color: #FFCCCB";
-            resultText.textContent = `You lost the game! Better luck next time.`;
-            resultBox.appendChild(resultText);
-            moves.forEach(button => button.removeEventListener('click', playRound))
-        }else{
+        if (compScore === 5) {
+            endGame(roundWinner);
+        } else {
             resultText.textContent = `You lost this round! ${compSelection} beats ${playerSelection}.`;
+            resultBox.style.cssText = "background-color: var(--bg-primary)";
             resultBox.appendChild(resultText);
         }
 
@@ -93,32 +91,35 @@ function playRound(event) {
         (playerSelection === 'Scissors' && compSelection === 'Paper')
         ) {
         roundWinner = "Player";
-
         playerScore++;
-        updateScore();        
-        
+        updateScore();
         if (playerScore === 5) {
-            playerScoreBox.style.cssText = "background-color: #CEFAD0";
-            resultText.textContent = `Congrats, you won the game!`;
-            resultBox.appendChild(resultText);
-            moves.forEach(button => button.removeEventListener('click', playRound))
+            endGame(roundWinner);
         } else {
             resultText.textContent = `You won this round! ${playerSelection} beats ${compSelection}.`;
+            resultBox.style.cssText = "background-color: var(--bg-primary)";
             resultBox.appendChild(resultText);
-        }
+        }    
     }
-
 }
 
+// Update the scoreboard
 function updateScore(){
     compScoreBox.textContent = `Computer: ${compScore}`;
     playerScoreBox.textContent = `Player: ${playerScore}`;
 }
 
-function announceMove(source){
-
-}
-
-function announceResults(winner){
-
+// Function to end the game when computer or player reaches 5
+function endGame (roundWinner){
+    if (roundWinner === 'Computer'){
+        compScoreBox.style.cssText = "background-color: #FFCCCB";
+        resultText.textContent = `You lost the game! Better luck next time.`;
+        resultBox.appendChild(resultText);
+        moves.forEach(button => button.removeEventListener('click', playRound))
+    }else {
+        playerScoreBox.style.cssText = "background-color: #CEFAD0";
+        resultText.textContent = `Congrats, you won the game!`;
+        resultBox.appendChild(resultText);
+        moves.forEach(button => button.removeEventListener('click', playRound))
+    }
 }
