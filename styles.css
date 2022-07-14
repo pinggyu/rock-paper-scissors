@@ -158,7 +158,7 @@ button:hover {
 .move, 
 .player-move {
     border-radius: 70px 70px 0px 70px;
-    width: 75%;
+    width: 65%;
 }
 
 .move {
@@ -181,14 +181,14 @@ button:hover {
 .comp-move, 
 .results-score {
     border-radius: 70px 70px 70px 0px;
-    width: 75%;
+    width: 65%;
     background-color: var(--clr-white);
 }
 
 .reset {
     text-align: center;
     background-color: var(--bg-primary);
-    padding: 2rem 0 2rem 0;
+    padding: 1rem 0 2rem 0;
 }
 
 .reset p {

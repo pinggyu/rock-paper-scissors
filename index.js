@@ -12,7 +12,7 @@ const resultText = document.createElement('p');
 
 let compScore = 0;
 let playerScore = 0;
-let enableClick = true;
+// let enableClick = true;
 // init method that will run when app first loads
 
 function init() {
@@ -28,28 +28,24 @@ reset.addEventListener('click', function(e){
 
 // Main function to play through the game
 function playGame(event) {
-    if (enableClick) {
-        enableClick = false;
-        // end the game if compscore or playerscore reaches 5
-        if (isGameOver()) {
-            endGame();
-            return
-        }
+    // if (enableClick) {
 
-        // get user pick & display it 
-        const playerSelection = event.target.textContent;
-        setTimeout(() => { displayPlayerMove(playerSelection) }, 500);
+    // pointerEvents prevent user from clicking new moves until the round ends and disables hover effects
+    // enableClick = false; => this is better industry practice
+    moves.forEach(button => button.style.pointerEvents = "none");
 
-        // get computer pick & display it
-        const compSelection = getCompMove();
-        setTimeout(() => { displayCompMove(compSelection) }, 1000);
+    // get user pick & display it 
+    const playerSelection = event.target.textContent;
+    setTimeout(() => { displayPlayerMove(playerSelection) }, 500);
 
-        // play a round with input (userpick and computer pick)
-        setTimeout(() => { playRound(playerSelection, compSelection) }, 1500);
+    // get computer pick & display it
+    const compSelection = getCompMove();
+    setTimeout(() => { displayCompMove(compSelection) }, 1000);
 
-        // reset round
-        setTimeout(resetRound, 4000);
-    }
+    // play a round with input (userpick and computer pick)
+    setTimeout(() => { playRound(playerSelection, compSelection) }, 1500);
+          
+    // }
 }
 
 // Function to display player move
@@ -103,6 +99,13 @@ function playRound(playerSelection, compSelection){
         updateScore();
         announceWinner(roundWinner, playerSelection, compSelection);
     }
+    // end the game if compscore or playerscore reaches 5
+    if (isGameOver()) {
+        endGame();
+    }else {
+        // reset round
+        setTimeout(resetRound, 3500);
+    }
 }
 
 // Update the scoreboard
@@ -136,7 +139,11 @@ function resetRound() {
     playerMoveBox.style.cssText = "background-color: var(--clr-white)";
     compMoveBox.style.cssText = "background-color: var(--clr-white)";
     resultBox.style.cssText = "background-color: var(--clr-white)";
-    enableClick = true;
+
+    // enableClick = true;
+
+    // revert hover to default & enable user to click again
+    moves.forEach(button => button.style.pointerEvents = "auto");
 }
 
 // Function to check if computer or player score reached 5
