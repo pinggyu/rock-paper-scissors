@@ -12,28 +12,52 @@ const resultText = document.createElement('p');
 
 let compScore = 0;
 let playerScore = 0;
-
-// create namespace object to hold the app
-const gameApp = {};
-
+let enableClick = true;
 // init method that will run when app first loads
 
-gameApp.init = function() {
-    // get user pick
-    // display it 
-    // get computer pick
-    // display it 
-    // play a round with input (userpick and computer pick)
+function init() {
+
+    moves.forEach(button => button.addEventListener('click', playGame))
+
 }
-
-
-// Play a round
-moves.forEach(button => button.addEventListener('click', playGame))
 
 // Reset game 
 reset.addEventListener('click', function(e){
     location.reload();
 })
+
+// Main function to play through the game
+function playGame(event) {
+    if (enableClick) {
+        enableClick = false;
+        // end the game if compscore or playerscore reaches 5
+        if (isGameOver()) {
+            endGame();
+            return
+        }
+
+        // get user pick & display it 
+        const playerSelection = event.target.textContent;
+        setTimeout(() => { displayPlayerMove(playerSelection) }, 500);
+
+        // get computer pick & display it
+        const compSelection = getCompMove();
+        setTimeout(() => { displayCompMove(compSelection) }, 1000);
+
+        // play a round with input (userpick and computer pick)
+        setTimeout(() => { playRound(playerSelection, compSelection) }, 1500);
+
+        // reset round
+        setTimeout(resetRound, 4000);
+    }
+}
+
+// Function to display player move
+function displayPlayerMove(playerMove) {
+    playerMoveText.textContent = `You played ${playerMove}.`;
+    playerMoveBox.style.cssText = "background-color: var(--clr-primary)";
+    playerMoveBox.appendChild(playerMoveText);
+}
 
 // Function to generate a random computer play using Math.random()
 function computerPlay() {
@@ -41,79 +65,44 @@ function computerPlay() {
     return compMoves[Math.floor(Math.random() * compMoves.length)];
 }
 
-// Main function to play through the game
-function playGame(event) {
+// Function to get comp move
+function getCompMove() {
+    return computerPlay();
+}
 
-    // player move
-    const playerSelection = event.target.textContent;
-    displayPlayerMove(playerSelection);
-    const compSelection = getCompMove();
+// Function to display comp move
+function displayCompMove(compMove) {
+    compMoveText.textContent = `Computer played ${compMove}.`;
+    compMoveBox.style.cssText = "background-color: var(--bg-primary)";
+    compMoveBox.appendChild(compMoveText);
+}
 
-    // game
+// Function to play a round
+function playRound(playerSelection, compSelection){
     let roundWinner;
-
     if (playerSelection === compSelection) {
         roundWinner = "Draw";
-
-        updateScore();       
-        announceWinner(roundWinner, playerSelection, compSelection);  
-
+        updateScore();
+        announceWinner(roundWinner, playerSelection, compSelection);
     } else if (
-        (playerSelection === 'Rock' && compSelection === 'Paper') || 
-        (playerSelection === 'Paper' && compSelection === 'Scissors') || 
+        (playerSelection === 'Rock' && compSelection === 'Paper') ||
+        (playerSelection === 'Paper' && compSelection === 'Scissors') ||
         (playerSelection === 'Scissors' && compSelection === 'Rock')
-        ) {
+    ) {
         roundWinner = "Computer";
         compScore++;
-        updateScore(); 
-        if (compScore === 5) {
-            endGame(roundWinner);
-        } else {
-            announceWinner(roundWinner, playerSelection, compSelection);
-        }
-
+        updateScore();
+        announceWinner(roundWinner, playerSelection, compSelection);
     } else if (
-        (playerSelection === 'Rock' && compSelection === 'Scissors') || 
-        (playerSelection === 'Paper' && compSelection === 'Rock') || 
+        (playerSelection === 'Rock' && compSelection === 'Scissors') ||
+        (playerSelection === 'Paper' && compSelection === 'Rock') ||
         (playerSelection === 'Scissors' && compSelection === 'Paper')
-        ) {
+    ) {
         roundWinner = "Player";
         playerScore++;
         updateScore();
-        if (playerScore === 5) {
-            endGame(roundWinner);
-        } else {
-            announceWinner(roundWinner, playerSelection, compSelection);
-        }    
+        announceWinner(roundWinner, playerSelection, compSelection);
     }
-}
-
-// Function to reset round
-function resetRound(){
-    playerMoveText.textContent = '';
-    compMoveText.textContent = '';
-    resultText.textContent = '';
-    playerMoveBox.style.cssText = "background-color: var(--clr-white)";
-    compMoveBox.style.cssText = "background-color: var(--clr-white)";
-    resultBox.style.cssText = "background-color: var(--clr-white)";
-
-}
-
-// Function to display player move
-function displayPlayerMove(playerMove){
-    // player moves
-    playerMoveText.textContent = `You played ${playerMove}.`;
-    playerMoveBox.style.cssText = "background-color: var(--clr-primary)";
-    playerMoveBox.appendChild(playerMoveText);
-}
-
-// Function to display & get comp move
-function getCompMove(){
-    const compSelection = computerPlay();
-    compMoveText.textContent = `Computer played ${compSelection}.`;
-    compMoveBox.style.cssText = "background-color: var(--bg-primary)";
-    compMoveBox.appendChild(compMoveText);
-    return compSelection;
 }
 
 // Update the scoreboard
@@ -139,9 +128,25 @@ function announceWinner (roundWinner, playerSelection, compSelection){
     }
 }
 
-// Function to end the game when computer or player reaches 5
-function endGame (roundWinner){
-    if (roundWinner === 'Computer'){
+// Function to reset round
+function resetRound() {
+    playerMoveText.textContent = '';
+    compMoveText.textContent = '';
+    resultText.textContent = '';
+    playerMoveBox.style.cssText = "background-color: var(--clr-white)";
+    compMoveBox.style.cssText = "background-color: var(--clr-white)";
+    resultBox.style.cssText = "background-color: var(--clr-white)";
+    enableClick = true;
+}
+
+// Function to check if computer or player score reached 5
+function isGameOver(){
+    return (compScore === 5 || playerScore === 5);
+}
+
+// Function to display ending game message and disable event listeners
+function endGame (){
+    if (compScore > playerScore){
         compScoreBox.style.cssText = "background-color: #FFCCCB";
         resultText.textContent = `You lost the game! Better luck next time.`;
         resultBox.appendChild(resultText);
@@ -155,4 +160,4 @@ function endGame (roundWinner){
 }
 
 //initialize the app
-gameApp.init();
+init();
