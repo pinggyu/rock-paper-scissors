@@ -107,7 +107,7 @@ h2, h3 {
 
 .title {
     text-align: center;
-    padding: 3rem;
+    padding: 2rem;
     background: var(--clr-primary);
     border-radius: 40px 40px 0 0;
 }
@@ -142,7 +142,7 @@ button:hover {
 /* CHAT */
 
 .chat {
-    padding: 3rem;
+    padding: 2rem;
 }
 
 .chat p {
@@ -151,7 +151,7 @@ button:hover {
 }
 
 .chat-box {
-    padding: 0.5rem;
+    padding: 1rem;
     margin: 0.5rem 0;
 }
 

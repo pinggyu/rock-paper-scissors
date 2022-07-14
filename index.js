@@ -1,11 +1,9 @@
 const moves = document.querySelectorAll('.buttons button')
-
-const playerMoveBox = document.getElementById('player-move');
 const compMoveBox = document.getElementById('comp-move');
 const resultBox = document.getElementById('results-score');
 const compScoreBox = document.getElementById('computer-score');
 const playerScoreBox = document.getElementById('player-score');
-
+const playerMoveBox = document.getElementById('player-move');
 const reset = document.getElementById('reset');
 
 const playerMoveText = document.createElement('p');
@@ -15,8 +13,22 @@ const resultText = document.createElement('p');
 let compScore = 0;
 let playerScore = 0;
 
+// create namespace object to hold the app
+const gameApp = {};
+
+// init method that will run when app first loads
+
+gameApp.init = function() {
+    // get user pick
+    // display it 
+    // get computer pick
+    // display it 
+    // play a round with input (userpick and computer pick)
+}
+
+
 // Play a round
-moves.forEach(button => button.addEventListener('click', playRound))
+moves.forEach(button => button.addEventListener('click', playGame))
 
 // Reset game 
 reset.addEventListener('click', function(e){
@@ -30,19 +42,12 @@ function computerPlay() {
 }
 
 // Main function to play through the game
-function playRound(event) {
+function playGame(event) {
 
     // player move
     const playerSelection = event.target.textContent;
-    playerMoveText.textContent = `You played ${playerSelection}.`;
-    playerMoveBox.style.cssText = "background-color: var(--clr-primary)";
-    playerMoveBox.appendChild(playerMoveText);
-
-    // computer move
-    const compSelection = computerPlay();
-    compMoveText.textContent = `Computer played ${compSelection}.`;
-    compMoveBox.style.cssText = "background-color: var(--bg-primary)";
-    compMoveBox.appendChild(compMoveText);   
+    displayPlayerMove(playerSelection);
+    const compSelection = getCompMove();
 
     // game
     let roundWinner;
@@ -83,6 +88,34 @@ function playRound(event) {
     }
 }
 
+// Function to reset round
+function resetRound(){
+    playerMoveText.textContent = '';
+    compMoveText.textContent = '';
+    resultText.textContent = '';
+    playerMoveBox.style.cssText = "background-color: var(--clr-white)";
+    compMoveBox.style.cssText = "background-color: var(--clr-white)";
+    resultBox.style.cssText = "background-color: var(--clr-white)";
+
+}
+
+// Function to display player move
+function displayPlayerMove(playerMove){
+    // player moves
+    playerMoveText.textContent = `You played ${playerMove}.`;
+    playerMoveBox.style.cssText = "background-color: var(--clr-primary)";
+    playerMoveBox.appendChild(playerMoveText);
+}
+
+// Function to display & get comp move
+function getCompMove(){
+    const compSelection = computerPlay();
+    compMoveText.textContent = `Computer played ${compSelection}.`;
+    compMoveBox.style.cssText = "background-color: var(--bg-primary)";
+    compMoveBox.appendChild(compMoveText);
+    return compSelection;
+}
+
 // Update the scoreboard
 function updateScore(){
     compScoreBox.textContent = `Computer: ${compScore}`;
@@ -112,11 +145,14 @@ function endGame (roundWinner){
         compScoreBox.style.cssText = "background-color: #FFCCCB";
         resultText.textContent = `You lost the game! Better luck next time.`;
         resultBox.appendChild(resultText);
-        moves.forEach(button => button.removeEventListener('click', playRound))
+        moves.forEach(button => button.removeEventListener('click', playGame))
     }else {
         playerScoreBox.style.cssText = "background-color: #CEFAD0";
         resultText.textContent = `Congrats, you won the game!`;
         resultBox.appendChild(resultText);
-        moves.forEach(button => button.removeEventListener('click', playRound))
+        moves.forEach(button => button.removeEventListener('click', playGame))
     }
 }
+
+//initialize the app
+gameApp.init();
