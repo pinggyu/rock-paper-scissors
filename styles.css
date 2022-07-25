@@ -189,6 +189,7 @@ button:hover {
 .reset {
     text-align: center;
     background-color: var(--bg-primary);
+    padding-bottom: 1rem;
 }
 
 .reset p {
