@@ -104,7 +104,7 @@ function playRound(playerSelection, compSelection){
         endGame();
     }else {
         // reset round
-        setTimeout(resetRound, 3500);
+        setTimeout(resetRound, 1800);
     }
 }
 

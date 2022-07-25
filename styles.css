@@ -13,8 +13,8 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 :root {
 
     /* Typography */
-    --ff-body: Roboto;
-    --ff-heading: 'Nunito';
+    --ff-body: 'Roboto';
+    --ff-heading: 'Source Code Pro';
 
     /* Colors */
     --clr-primary: #437fc7;
