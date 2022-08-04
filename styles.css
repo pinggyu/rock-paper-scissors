@@ -47,6 +47,7 @@ body {
     min-height: 100vh;
     background-color: var(--bg-primary);
     line-height: 1.2;
+    font-size: 0.9rem;
 }
 
 .page-wrapper {
@@ -64,6 +65,7 @@ body {
     background-color: var(--clr-white);
     border-radius: 20px;
     overflow: hidden;
+    margin-top: 1rem;
 }
 
 .main-content {
@@ -80,20 +82,20 @@ h1 {
     font-family: var(--ff-heading), sans-serif;
     color: var(--clr-white);
     text-transform: uppercase;
-    font-size: clamp(0.5rem, 5vw, 1.5rem);
+    font-size: 1rem;
 }
 
 h2, h3 {
     font-family: var(--ff-heading), sans-serif;
     color: var(--clr-white);
     text-transform: uppercase;
-    font-size: clamp(0.3rem, 9vw, 1rem);;
+    font-size: 0.9rem;
 }
 
 .scoreboard {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding-bottom: 0.5rem;
 }
@@ -104,8 +106,8 @@ h2, h3 {
     color: var(--clr-primary);
     border: 1px solid transparent;
     border-radius: 10px;
-    padding: 0.5rem 1rem;
-    width: clamp(10rem, 30vw, 50%);
+    padding: 0.5rem;
+    width: 8rem;
 }
 
 .title {
@@ -123,7 +125,7 @@ button {
     background-color: var(--clr-accent);
     border: 1px solid transparent;
     border-radius: 10px;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem;
     transition: 0.3s;
 }
 
@@ -143,7 +145,7 @@ button:hover {
 /* CHAT */
 
 .chat {
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
 }
 
 .chat p {
@@ -159,7 +161,7 @@ button:hover {
 .move, 
 .player-move {
     border-radius: 20px 20px 0px 20px;
-    width: 100%;
+    width: 75%;
 }
 
 .move {
@@ -168,9 +170,14 @@ button:hover {
 
 .player-move {
     background-color: var(--clr-white);
+    height: 3rem;
 }
 
-.player-move, .comp-move, .results-score {
+.comp-move {
+    height: 3rem;
+}
+
+.results-score {
     height: 4rem;
 }
 
@@ -182,7 +189,7 @@ button:hover {
 .comp-move, 
 .results-score {
     border-radius: 20px 20px 20px 0px;
-    width: 95%;
+    width: 75%;
     background-color: var(--clr-white);
 }
 
@@ -201,7 +208,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.5rem;
     padding-bottom: 0.5rem;
 }
 
@@ -209,7 +215,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem
 }
 
 /* FOOTER */
@@ -249,16 +254,7 @@ footer a:hover {
         border-radius: 40px 40px 40px 0px;
     }
 
-    button {
-        padding: 0.5rem 1rem;
-    }
-
     .buttons {
         flex-wrap: wrap;
     }
-
-    .chat {
-        padding: 2rem;
-    }
-
 }
